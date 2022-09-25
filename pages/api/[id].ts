@@ -14,6 +14,7 @@ import {
 import { initializeApp } from "firebase/app";
 import { child, get, getDatabase, ref, set } from "firebase/database";
 import getImg from "../../libs/getImg";
+import fillGaps from "../../libs/fillGaps";
 
 export default async function handler(
   req: NextApiRequest,
@@ -54,9 +55,7 @@ export default async function handler(
         style="filter: invert(68%) sepia(17%) saturate(1307%) hue-rotate(106deg) brightness(94%) contrast(91%);">
       <title>Visitor Count</title>
       <g>
-        ${visits
-          .toString()
-          .split("")
+        ${fillGaps(visits)
           .map((d: string, i: number) => {
             const number =
               d === "1"
