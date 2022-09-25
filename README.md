@@ -1,27 +1,27 @@
-# Next.js + Tailwind CSS Example
+<h1 align='center'>Visitor Count</h1>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<p align="center">
+<img src="https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri" />
+</p>
 
-## Deploy your own
+<p align='center'>Simple Visitors Counter using Firebase</p>
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Usage
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+```javascript
+<p align="center">
+<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username" />
+</p>
 
-## How to use
+Or
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+<p align="center">
+<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username/Repo" />
+</p>
 ```
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+### Note
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
+The username and repo are case sensitive
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+<h1 align='center'>Don't forget to 🌟 this, Thanks</h1>
