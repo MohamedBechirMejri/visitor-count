@@ -1,7 +1,7 @@
 <h1 align='center'>Visitor Count</h1>
 
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri" />
+<img src="https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri/visitor-count" />
 </p>
 
 <p align='center'>Simple Visitors Counter using Firebase</p>
