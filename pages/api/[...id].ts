@@ -21,6 +21,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { id } = req.query;
+  console.log('query: ', req.query);
 
   const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
