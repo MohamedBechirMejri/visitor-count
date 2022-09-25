@@ -50,11 +50,11 @@ export default async function handler(
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         width="260"
-        height="80"
+        height="50"
         version="1.1"
         style="filter: invert(68%) sepia(17%) saturate(1307%) hue-rotate(106deg) brightness(94%) contrast(91%);">
       <title>Visitor Count</title>
-      <g>
+      <g style='transform: translateY(-25px)'>
         ${fillGaps(visits)
           .map((d: string, i: number) => {
             const number =
