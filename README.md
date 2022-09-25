@@ -20,8 +20,11 @@ Or
 </p>
 ```
 
-### Note
+### Note: the username and repo are case sensitive
 
-The username and repo are case sensitive
+## Todo
+
+- [ ] Add More Themes
+- [ ] Add Frontend to website
 
 <h1 align='center'>Don't forget to 🌟 this, Thanks</h1>
