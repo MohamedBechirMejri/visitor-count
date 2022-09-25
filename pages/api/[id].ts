@@ -49,8 +49,8 @@ export default async function handler(
           `<svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="315"
-        height="100"
+        width="260"
+        height="80"
         version="1.1"
         style="filter: invert(68%) sepia(17%) saturate(1307%) hue-rotate(106deg) brightness(94%) contrast(91%);">
       <title>Visitor Count</title>
