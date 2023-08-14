@@ -1,20 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  zero,
-  one,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-} from "../../libs/numbers";
 import { initializeApp } from "firebase/app";
 import { child, get, getDatabase, ref, set } from "firebase/database";
 import getImg from "../../libs/getImg";
 import fillGaps from "../../libs/fillGaps";
+import {Numbers} from "../../libs/numbers";
 
 export default async function handler(
   req: NextApiRequest,
@@ -57,30 +46,7 @@ export default async function handler(
       <title>Visitor Count</title>
       <g style='transform: translateY(-25px)'>
         ${fillGaps(visits)
-          .map((d: string, i: number) => {
-            const number =
-              d === "1"
-                ? one
-                : d === "2"
-                ? two
-                : d === "3"
-                ? three
-                : d === "4"
-                ? four
-                : d === "5"
-                ? five
-                : d === "6"
-                ? six
-                : d === "7"
-                ? seven
-                : d === "8"
-                ? eight
-                : d === "9"
-                ? nine
-                : zero;
-
-            return getImg(i * 35, number);
-          })
+          .map((d: number, i: number) => getImg(i * 35, Numbers[d]))
           .join("")}
       </g>
     </svg>`
