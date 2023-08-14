@@ -1,16 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  zero,
-  one,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-} from "../../libs/numbers";
+import getImg from "../../libs/getImg";
+import {Numbers} from "../../libs/numbers";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const visits = "0001235";
@@ -32,30 +22,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       <g>
         ${visits
           .split("")
-          .map((d, i) => {
-            const number =
-              d === "1"
-                ? one
-                : d === "2"
-                ? two
-                : d === "3"
-                ? three
-                : d === "4"
-                ? four
-                : d === "5"
-                ? five
-                : d === "6"
-                ? six
-                : d === "7"
-                ? seven
-                : d === "8"
-                ? eight
-                : d === "9"
-                ? nine
-                : zero;
-
-            return getImg(i * 35, number);
-          })
+          .map((d, i) => 
+            (d: number, i: number) => getImg(i * 35, Numbers[d])
+          )
           .join("")}
       </g>
     </svg>`
