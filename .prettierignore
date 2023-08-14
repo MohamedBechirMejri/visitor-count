@@ -1,0 +1,7 @@
+yarn.lock
+.gitignore
+.env.local
+styles
+public
+node_modules
+.next

@@ -24,7 +24,7 @@ Or
 
 ## Todo
 
-- [ ] Add More Themes
-- [ ] Add Frontend to website
+-   [ ] Add More Themes
+-   [ ] Add Frontend to website
 
 <h1 align='center'>Don't forget to 🌟 this, Thanks</h1>
