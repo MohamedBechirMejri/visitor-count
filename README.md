@@ -10,13 +10,13 @@
 
 ```javascript
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username" />
+<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username?hexColor=ee4488" />
 </p>
 
 Or
 
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username/Repo" />
+<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username/Repo?hexColor=dd1166" />
 </p>
 ```
 
@@ -24,7 +24,7 @@ Or
 
 ## Todo
 
--   [ ] Add More Themes
--   [ ] Add Frontend to website
+- [x] ~~Add More Themes~~ (Customize Colors)
+- [ ] Add Frontend to website
 
 <h1 align='center'>Don't forget to 🌟 this, Thanks</h1>
