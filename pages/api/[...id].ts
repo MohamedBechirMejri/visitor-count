@@ -24,13 +24,10 @@ export default async function handler(
     res: NextApiResponse,
 ) {
     const { id, hexColor } = req.query
-    console.log('query: ', req.query)
 
     const filter = hexColor
         ? hexToCSSFilter(`#${hexColor}`).filter
         : 'invert(68%) sepia(17%) saturate(1307%) hue-rotate(106deg) brightness(94%) contrast(91%)'
-
-    console.log('filter: ', filter)
 
     await initializeApp(firebaseConfig)
 
