@@ -30,7 +30,7 @@ export default async function handler(
     res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8')
 
     if (isLoser) return res.send(`<svg height="40" width="200" xmlns="http://www.w3.org/2000/svg">
-    <text x="5" y="30" fill="none" stroke="red" font-size="35">I'm Gay'</text>
+    <text x="5" y="30" fill="none" stroke="red" font-size="35">I'm Gay 🥖</text>
   </svg>`)
 
     const filter = hexColor
