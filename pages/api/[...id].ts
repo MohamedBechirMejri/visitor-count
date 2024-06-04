@@ -65,12 +65,12 @@ export default async function handler(
                       xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
                         width="260"
-                        height="60"
+                        height="69"
                         version="1.1"
                         style='filter: ${filter}; font-family: monospace, sans-serif; font-size: 10px;'>
 
                         <title>Visitor Count</title>
-                        <g style='transform: translate(0, -30px); scale: 1;'>
+                        <g style='transform: translate(0, -26px); scale: 1;'>
                             ${fillGaps(uniqueViews.length)
                         .map((d: number, i: number) =>
                             getImg(i * 35, Numbers[d]),
@@ -78,7 +78,7 @@ export default async function handler(
                         .join('')}
                         </g>
 
-                        <text x="0" y="60" fill="none" stroke="black" font-size="14" style='transform: translate(24%, -2%);'>
+                        <text x="0" y="60" fill="none" stroke="black" font-size="14" style='transform: translate(24%, 8%);'>
                             total views: ${views}
                         </text>
                     </svg>`,
