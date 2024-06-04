@@ -27,7 +27,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string[]
 
     const isLoser = ID && ID[0] === 'AminDhouib';
 
-    const ip = req.ip || req.headers.get('X-Forwarded-For') || '0.0.0.0'
+    const ip = req.ip ?? '0.0.0.0'
 
     console.log('ip', ip);
 
