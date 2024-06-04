@@ -9,6 +9,7 @@
         "prettier-write": "prettier --write ."
     },
     "dependencies": {
+        "@vercel/edge": "^1.1.1",
         "firebase": "^9.23.0",
         "hex-to-css-filter": "^5.4.0",
         "next": "latest",

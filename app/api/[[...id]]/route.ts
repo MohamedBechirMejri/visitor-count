@@ -18,6 +18,10 @@ const firebaseConfig = {
         'https://visitor-count-66755-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
+import { ipAddress } from "@vercel/edge";
+
+export const runtime = 'edge'
+
 export async function GET(req: NextRequest, { params }: { params: { id: string[]; } }) {
     let { id: ID } = params;
     const id = ID.join(',');
@@ -27,7 +31,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string[]
 
     const isLoser = ID && ID[0] === 'AminDhouib';
 
-    const ip = req.ip ?? '0.0.0.0'
+    const ip = ipAddress(req) ?? req.ip ?? req.headers.get('x-vercel-forwarded-for') ?? '0.0.0.0'
 
     console.log('ip', ip);
 
