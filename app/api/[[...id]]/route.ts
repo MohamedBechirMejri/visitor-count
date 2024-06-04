@@ -1,12 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { initializeApp } from 'firebase/app'
 import { child, get, getDatabase, ref, set } from 'firebase/database'
 import { hexToCSSFilter } from 'hex-to-css-filter'
+import fillGaps from '../../../libs/fillGaps'
+import getImg from '../../../libs/getImg'
+import { Numbers } from '../../../libs/numbers'
 
-import getImg from '../../libs/getImg'
-import fillGaps from '../../libs/fillGaps'
-import { Numbers } from '../../libs/numbers'
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -19,20 +18,27 @@ const firebaseConfig = {
         'https://visitor-count-66755-default-rtdb.europe-west1.firebasedatabase.app',
 }
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse,
-) {
-    const { id, hexColor } = req.query
-    const ip = req.headers['X-Forwarded-For'] || req.headers['x-vercel-forwarded-for'] || 'this string only shows up in development mode'
+export async function GET(req: Request, { params }: { params: { id: string[], hexColor: string } }) {
+    let { id: ID, hexColor } = params
+
+    const id = ID.join(',')
+
+    console.log('ID', id)
+    console.log('HEX COLOR', hexColor)
+
+    // const XFF = req.headers['X-Forwarded-For']
 
     const isLoser = id && id[0] === 'AminDhouib'
 
-    res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8')
+    const ip = 0
 
-    if (isLoser) return res.send(`<svg height="40" width="200" xmlns="http://www.w3.org/2000/svg">
+
+    if (isLoser) return new Response(`<svg height="40" width="200" xmlns="http://www.w3.org/2000/svg">
     <text x="5" y="30" fill="none" stroke="red" font-size="35">I'm Gay 🥖</text>
-  </svg>`)
+    </svg>`, {
+        status: 200,
+        headers: { "Content-Type": 'image/svg+xml; charset=utf-8' },
+    });
 
     const filter = hexColor
         ? hexToCSSFilter(`#${hexColor}`).filter
@@ -60,7 +66,7 @@ export default async function handler(
                 const db = await getDatabase()
                 await set(ref(db, 'users/' + id), { views, uniqueViews })
 
-                res.send(
+                return new Response(
                     `<svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -81,14 +87,20 @@ export default async function handler(
                         <text x="0" y="60" fill="none" stroke="black" font-size="14" style='transform: translate(24%, 8%);'>
                             total views: ${views}
                         </text>
-                    </svg>`,
+                    </svg>`, {
+                    status: 200,
+                    headers: { "Content-Type": 'image/svg+xml; charset=utf-8' },
+                }
                 )
             }
         })
         .catch(error => {
             console.error(error)
+            return new Response('Error' + error, { status: 500 })
         })
 }
+
+
 
 // no cache
 export const dynamic = 'force-dynamic'
