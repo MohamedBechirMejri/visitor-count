@@ -24,9 +24,10 @@ export default async function handler(
     res: NextApiResponse,
 ) {
     const { id, hexColor } = req.query
+    const ip = req.headers['X-Forwarded-For'] || req.headers['x-vercel-forwarded-for'] || 'this string only shows up in development mode'
 
     const isLoser = id && id[0] === 'AminDhouib'
-    
+
     res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8')
 
     if (isLoser) return res.send(`<svg height="40" width="200" xmlns="http://www.w3.org/2000/svg">
@@ -44,10 +45,20 @@ export default async function handler(
     get(child(dbRef, `users/`))
         .then(async snapshot => {
             if (snapshot.exists()) {
-                const visits = (snapshot.val()[`${id}`] || 0) + 1
+                const result = snapshot.val()
+
+                let user = result[`${id}`] || 0
+
+                // check if user is of type object
+                if (typeof user === 'number') {
+                    user = { views: user, uniqueViews: [] }
+                }
+
+                const views = (user.views || 0) + 1
+                const uniqueViews = (user.uniqueViews || []).includes(ip) ? user.uniqueViews || [] : [...user.uniqueViews, ip]
 
                 const db = await getDatabase()
-                await set(ref(db, 'users/' + id), visits)
+                await set(ref(db, 'users/' + id), { views, uniqueViews })
 
                 res.send(
                     `<svg
@@ -56,16 +67,20 @@ export default async function handler(
                         width="260"
                         height="50"
                         version="1.1"
-                        style='filter: ${filter};'>
+                        style='filter: ${filter}; font-family: monospace, sans-serif; font-size: 10px;'>
 
                         <title>Visitor Count</title>
-                        <g style='transform: translateY(-25px)'>
-                            ${fillGaps(visits)
-                                .map((d: number, i: number) =>
-                                    getImg(i * 35, Numbers[d]),
-                                )
-                                .join('')}
+                        <g style='transform: translate(16%, -50%); scale: .75;'>
+                            ${fillGaps(uniqueViews.length)
+                        .map((d: number, i: number) =>
+                            getImg(i * 35, Numbers[d]),
+                        )
+                        .join('')}
                         </g>
+
+                        <text x="0" y="50" fill="none" stroke="black" font-size="10" style='transform: translate(32%, -6%);'>
+                            total views: ${views}
+                        </text>
                     </svg>`,
                 )
             }
@@ -74,3 +89,6 @@ export default async function handler(
             console.error(error)
         })
 }
+
+// no cache
+export const dynamic = 'force-dynamic'
