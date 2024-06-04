@@ -27,7 +27,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string[]
 
     const isLoser = ID && ID[0] === 'AminDhouib';
 
-    const ip = req.ip ?? req.headers.get('x-vercel-forwarded-for') ?? '0.0.0.0'
+    const IP = req.ip ?? req.headers.get('x-vercel-forwarded-for')
+    const ip = IP && !IP.includes('140.82.115.') ? IP : '0.0.0.0'
 
     console.log('ip', ip);
 
@@ -67,6 +68,29 @@ export async function GET(req: NextRequest, { params }: { params: { id: string[]
 
             const db = getDatabase();
             await set(ref(db, 'users/' + id), { views, uniqueViews });
+
+            if (ip === '0.0.0.0') {
+                return new Response(
+                    `<svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="260"
+                        height="50"
+                        version="1.1"
+                        style='filter: ${filter}; font-family: monospace, sans-serif; font-size: 10px;'>
+                        <title>Visitor Count</title>
+                        <g style='transform: translate(0, -26px); scale: 1;'>
+                            ${fillGaps(views)
+                        .map((d, i) => getImg(i * 35, Numbers[d]))
+                        .join('')}
+                        </g>
+                    </svg>`,
+                    {
+                        status: 200,
+                        headers: { "Content-Type": 'image/svg+xml; charset=utf-8' },
+                    }
+                );
+            }
 
             return new Response(
                 `<svg
