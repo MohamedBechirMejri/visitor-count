@@ -19,9 +19,9 @@ const firebaseConfig = {
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: { id?: string[] } },
+	{ params }: { params: Promise<{ id?: string[] }> },
 ) {
-	const ID = params.id ?? [];
+	const { id: ID = [] } = await params;
 	if (ID.length === 0) {
 		return new Response("Missing id", { status: 400 });
 	}
