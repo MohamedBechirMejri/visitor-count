@@ -1,7 +1,7 @@
 <h1 align='center'>Visitor Count</h1>
 
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri/visitor-count" />
+<img src="https://visitor-count.mohamedbechir-mejri-dev.workers.dev/api/MohamedBechirMejri/visitor-count" />
 </p>
 
 <p align='center'>Simple Visitors Counter using Firebase</p>
@@ -10,13 +10,13 @@
 
 ```javascript
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username?hexColor=ee4488" />
+<img src="https://visitor-count.mohamedbechir-mejri-dev.workers.dev/api/Github_Username?hexColor=ee4488" />
 </p>
 
 Or
 
 <p align="center">
-<img src="https://visitor-count-b8lb.vercel.app/api/Github_Username/Repo?hexColor=dd1166" />
+<img src="https://visitor-count.mohamedbechir-mejri-dev.workers.dev/api/Github_Username/Repo?hexColor=dd1166" />
 </p>
 ```
 
