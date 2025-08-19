@@ -19,19 +19,24 @@ const firebaseConfig = {
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: { id: string[] } },
+	{ params }: { params: { id?: string[] } },
 ) {
-	const { id: ID } = params;
+	const ID = params.id ?? [];
+	if (ID.length === 0) {
+		return new Response("Missing id", { status: 400 });
+	}
 	const id = ID.join(",");
 
 	const url = new URL(req.url);
 	const hexColor = url.searchParams.get("hexColor");
 
-	const isLoser = ID && ID[0] === "AminDhouib";
+	const isLoser = ID[0] === "AminDhouib";
 
 	const IP =
-		req.headers.get("x-vercel-forwarded-for") ||
-		req.headers.get("x-forwarded-for");
+		req.headers.get("cf-connecting-ip") ||
+		req.headers.get("x-forwarded-for") ||
+		req.headers.get("x-real-ip") ||
+		req.headers.get("x-vercel-forwarded-for");
 	const ip = IP && !IP.includes("140.82.115.") ? IP : "0.0.0.0";
 
 	console.log("ip", ip);
